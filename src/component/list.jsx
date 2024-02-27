@@ -1,45 +1,41 @@
-const { default: Filter } = require("./Filter");
 
-const filters =[
-    {
-        name:'Date of Registration',
-        type:'date'
-    },
-    {
-        name:'Vendor Site',
-        type:'select',
-        option:[
-            {value:'google',
-            url:'www.google.in'
-        },
-            {value:'amazon',
-            url:'www.amazon.in'
-        },
-            {value:'TataSteel',
-            url:'www.Tatasteel.co.in'
-        },
-        ]
-    },
-    {
-        name:'Rating',
-        type:'number'
-    },
-    {
-        name:'Type of bussiness',
-        type:'types'
-    },
-    {
-        name:'Assign To',
-        type:'Projects'
-    },
-    {
-        name:'Location',
-        type:'Geograpical'
-    },
+import React from 'react';
+import Filter from './Filter'; 
 
+const filters = [
+  {
+    name: 'Date of Registration',
+    type: 'date',
+  },
+  {
+    name: 'Vendor Site',
+    type: 'select',
+    options: [
+      { value: 'Google', url: 'www.google.in' },
+      { value: 'Amazon', url: 'www.amazon.in' },
+      { value: 'TataSteel', url: 'www.Tatasteel.co.in' },
+    ],
+  },
+  {
+    name: 'Rating',
+    type: 'number',
+  },
+  {
+    name: 'Type of Business', 
+    type: 'types', 
+  },
+  {
+    name: 'Assign To',
+    type: 'Projects',
+  },
+  {
+    name: 'Location',
+    type: 'Geograpical', 
+  },
 ];
 
-const FilterChange =(val)=>{
-    console.log(`Filter valued change is ${val}`);
+const FilterChange = (val) => {
+  console.log(`Filter value changed: ${val}`); 
 };
-<Filter filters ={filters} onFilterChange={FilterChange} buttonText= "Refine by"/>
+
+<Filter filters={filters} onFilterChange={FilterChange} buttonText="Refine by" />

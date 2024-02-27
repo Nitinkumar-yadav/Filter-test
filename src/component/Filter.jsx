@@ -1,43 +1,47 @@
-import { useState } from 'react';
-import './css/Filter.css';
-import './list'
+import React, { useState } from 'react';
+import './css/Filter.css'; 
 
+function Filter({ filters, onFilterChange, buttonText = 'Refine by' }) {
+  const [isOpen, setIsOpen] = useState(false);
 
-function Filter(filters,onfilterChange,buttonText){
-    const [isOpen,setisOpen] =useState(false);
-    const dropdownBtn =()=>{
-        setisOpen(!isOpen);
-    } 
+  const toggleDropdown = () => {
+    setIsOpen(!isOpen); 
+  };
 
-    const FilterChange =(e)=>{
-        onfilterChange(e.target.value);
-    };
+  const handleChange = (event) => {
+    onFilterChange(event.target.value);
+  };
 
-return(
+  return (
     <div className="Filter-container">
-        <button onClick={dropdownBtn}>Filters</button>
-        {isOpen&&(
-        <ul className='dropdown'>
-            {filters.map((filter)=>(
-                <li key={filter.name}>
-                    {filter.type ==='select'?(
-                            <select onChange={FilterChange} name={filter.name}>
-                            <option value=''>{filter.name}</option>
-                            {filter.option.map((option)=>(
-                                <option key={option.value} value={option.value}>
-                                    {option.value}
-                                </option>
-                            ))}
-                            </select>
-                    ):(
-                        <input type={filter.type} name={filter.name} onChange={FilterChange} placeholder={filter.name}/>
-                    )}
-                </li>
-            ))}
+      <button onClick={toggleDropdown}>{buttonText}</button>
+      {isOpen && (
+        <ul className="dropdown">
+          {filters.map((filter) => (
+            <li key={filter.name}>
+              {filter.type === 'select' ? (
+                <select onChange={handleChange} name={filter.name}>
+                  <option value="">{filter.name}</option>
+                  {filter.options?.map((option) => (
+                    <option key={option.value} value={option.value}>
+                      {option.label || option.value}
+                    </option>
+                  ))}
+                </select>
+              ) : (
+                <input
+                  type={filter.type}
+                  name={filter.name}
+                  onChange={handleChange}
+                  placeholder={filter.name}
+                />
+              )}
+            </li>
+          ))}
         </ul>
-        )}
+      )}
     </div>
-)
-};
+  );
+}
 
 export default Filter;
