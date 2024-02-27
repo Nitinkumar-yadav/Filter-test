@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './css/Filter.css'; 
 
-function Filter({ filters, onFilterChange, buttonText = 'Refine by' }) {
+function Filter({ filters, onFilterChange, buttonText = 'Filter' }) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
